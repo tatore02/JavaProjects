@@ -19,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable{
     Paddle paddle2;
     Ball ball;
     Score score;
+    Audio audio;
 
     GamePanel(){
         newPaddles();
@@ -75,6 +76,8 @@ public class GamePanel extends JPanel implements Runnable{
 
         //bounce ball off padels
         if(ball.intersects(paddle1)){
+            audio.RunMusic("C:/Users/HOME/Desktop/Java/JavaProjects/Pong/resorces/bounce_effect.wav");
+
             ball.xVelocity = Math.abs(ball.xVelocity);
             ball.xVelocity++;   //optional for more difficulty
             if(ball.yVelocity > 0)
@@ -85,6 +88,8 @@ public class GamePanel extends JPanel implements Runnable{
             ball.setYDirection(ball.yVelocity);
         }
         if(ball.intersects(paddle2)){
+            audio.RunMusic("C:/Users/HOME/Desktop/Java/JavaProjects/Pong/resorces/bounce_effect.wav");
+
             ball.xVelocity = Math.abs(ball.xVelocity);
             ball.xVelocity++;   //optional for more difficulty
             if(ball.yVelocity > 0)
@@ -108,12 +113,16 @@ public class GamePanel extends JPanel implements Runnable{
 
         //give a player 1 point and creates new paddles & ball
         if(ball.x <= 0){
+            audio.RunMusic("C:/Users/HOME/Desktop/Java/JavaProjects/Pong/resorces/goal_effect.wav");
+
             score.player2++;
             newPaddles();
             newBall();
             System.out.println("Player 2: " + score.player2);
         }
         if(ball.x >= GAME_WIDTH-BALL_DIAMETER){
+            audio.RunMusic("C:/Users/HOME/Desktop/Java/JavaProjects/Pong/resorces/goal_effect.wav");
+
             score.player1++;
             newPaddles();
             newBall();
